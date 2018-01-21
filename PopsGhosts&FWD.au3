@@ -110,15 +110,7 @@ Go_To_Map("Death_Volcano")
 	  Sleep(17000)
 	  Mouse_MPush(220,560,5)
 
-	if $counter = 3 Then
-		$counter=0
-		;Window Choose and reset
-		Mouse_MPush(115,55)
-		Sleep(25000)
-		;ClaimSkulls
-		Mouse_MPush(115,125)
-		Mouse_MPush(250,485)
-	EndIf
+
 EndFunc
 
 ;BEGIN OF SCRIPT
@@ -188,6 +180,8 @@ for $i = 2 To 1 Step -1
 Next
 
 Sleep(310000)
+	;Sloth Form 515 seconds, cooldown 285s
+	Mouse_MPush(45,190,3)
 
 ;Perk
 	Right_Panel_Minus_Close()
@@ -206,13 +200,24 @@ Sleep(310000)
 
 ;Go_further_in_map_and_col_items()
 
+if $counter = 1 Then
+	$counter=0
+	;Window Choose and reset
+	Mouse_MPush(115,55)
+	Sleep(25000)
+	;ClaimSkulls
+	Mouse_MPush(115,125)
+	Sleep(1000)
+	Mouse_MPush(250,485,2)
+EndIf
+
 ;Chose Sword!
 Right_Panel_Pluse_Open()
 Mouse_MPush(550,225,2)
 
 ;Enter Arcane
 	MouseMove(678,523)
-	MouseWheel($MOUSE_WHEEL_DOWN, 50)
+	MouseWheel($MOUSE_WHEEL_DOWN,100)
 	Mouse_MPush(750,530,2)
 	Sleep(2000);
 
@@ -251,7 +256,7 @@ Mouse_MPush(550,225,2)
 	Sleep(2000)
 
 ;Items
-	for $i=1 To 14 Step 1
+	for $i=1 To 3 Step 1
 		Mouse_MPush(115,120)
 		Sleep(1000)
 		Mouse_MPush(220,560,2)
@@ -260,7 +265,7 @@ Mouse_MPush(550,225,2)
 
 ;Quick Portal
 	MouseMove(678,523)
-	MouseWheel($MOUSE_WHEEL_DOWN, 50)
+	MouseWheel($MOUSE_WHEEL_DOWN, 100)
 	for $i=0 To 1 Step 1
 		Sleep(1000)
 		Mouse_MPush(835,590)
