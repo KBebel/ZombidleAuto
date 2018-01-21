@@ -1,9 +1,21 @@
 #include <AutoItConstants.au3>
+
 HotKeySet("{Esc}", "Terminate")
 Func Terminate()
    Exit
 EndFunc
 
+#comments-start
+	Usefull informations:
+		Sloth Form 515 seconds, cooldown 285s
+		Time to end worlds (one after another in order with helpers on all worlds"
+			Burbtopia: 7:35= 455 000
+			Recon_Site: 10:00 = 600 000
+			Death_Volcano: 19:00 = 1 140 000
+			Western_Swamps:
+			Talar_Country:
+
+#comments-end
 Func Mouse_MPush($x,$y,$c=1)
 	MouseMove($x,$y,20)
 	for $i=1 To $c Step 1
@@ -22,35 +34,104 @@ Func Right_Panel_Minus_Close()
 	Mouse_MPush(465,110,3)
 EndFunc
 
+Func Go_To_Map($location)
+	Right_Panel_Pluse_Open()
+	;Chose Map
+	MouseMove(678,523)
+	MouseWheel($MOUSE_WHEEL_DOWN, 100)
+	Mouse_MPush(835,530)
+	Sleep(3000)
+	;scroll map down/left
+	MouseMove(100,670)
+	MouseDown('primary')
+	MouseMove(500,100)
+	MouseUp('primary')
+
+	if $location == "Burbtopia" Then
+		Mouse_MPush(580,600)
+	ElseIf $location == "Recon_Site" Then
+		Mouse_MPush(705,567)
+	ElseIf $location == "Death_Volcano" Then
+		Mouse_MPush(695,310)
+	ElseIf $location == "Western_Swamps" Then
+		Mouse_MPush(615,170)
+	ElseIf $location == "Talar_Country" Then
+		Mouse_MPush(320,420)
+	ElseIf $location == "Malgar Realm" Then
+		Mouse_MPush(445,140)
+	ElseIf $location == "Amero_Kingdom" Then
+		Mouse_MPush(215,180)
+	Else
+		Mouse_MPush(950,100,10)
+		Sleep(1000)
+		Mouse_MPush(950,100,10)
+	EndIf
+
+	;Enter
+	Mouse_MPush(600,505)
+	;ExitIfWrong
+	Mouse_MPush(950,100)
+	Sleep(1000)
+	Mouse_MPush(950,100)
+	Sleep(3000)
+EndFunc
+
+Func Go_further_in_map_and_col_items()
+
+Sleep(4000)
+Go_To_Map("Recon_Site")
+	;SlothForm
+	Mouse_MPush(45,190,3)
+	Sleep(290000)
+	Mouse_MPush(45,190,3)
+	Sleep(270000)
+
+Go_To_Map("Death_Volcano")
+	;SlothForm
+	Sleep(20000)
+	Mouse_MPush(45,190,3)
+	Sleep(300000)
+	Mouse_MPush(45,190,3)
+	Sleep(300000)
+	Mouse_MPush(45,190,3)
+
+;Perk
+	Right_Panel_Minus_Close()
+	Mouse_MPush(115,120)
+	  Sleep(2000);
+	  ;choose yes
+	  Mouse_MPush(660,540,2)
+	  ;Awesome!
+	  ;Mouse_MPush(755,540,2)
+	;CloseAd
+	  Sleep ( 17000 )
+	  Mouse_MPush(675,230,2)
+	  ;?check for item?
+	  Sleep(17000)
+	  Mouse_MPush(220,560,5)
+
+	if $counter = 3 Then
+		$counter=0
+		;Window Choose and reset
+		Mouse_MPush(115,55)
+		Sleep(25000)
+		;ClaimSkulls
+		Mouse_MPush(115,125)
+		Mouse_MPush(250,485)
+	EndIf
+EndFunc
+
+;BEGIN OF SCRIPT
+
 $counter=0
 
 While 1
 
 $counter+=1
 
-Right_Panel_Pluse_Open()
-;go to map
-	MouseMove(678,523)
-	MouseWheel($MOUSE_WHEEL_DOWN, 50)
-	Mouse_MPush(835,530)
-	Sleep(1000)
-	for $i=0 To 2 Step 1
-		MouseMove(500,670)
-		MouseDown('primary')
-		MouseMove(500,100)
-		MouseUp('primary')
-	Next
-;Burbtopia
-	Mouse_MPush(580,600)
-	Mouse_MPush(600,505)
-	Sleep(4000)
-;ExitIfWrong
-	Mouse_MPush(950,100,10)
-	Sleep(1000)
-	Mouse_MPush(950,100,10)
-
-
+Go_To_Map("Burbtopia")
 Right_Panel_Minus_Close()
+
 
 ;Set "Multiple buy"
 	Mouse_MPush(905,210,4)
@@ -82,17 +163,15 @@ Right_Panel_Pluse_Open()
 for $i=3 To 1 Step -1
 	;By All Skills
 		Mouse_MPush(855,470)
-		;MouseClick("primary",885,470,5,20)
 	;Activate All Skills
-		Mouse_MPush(955,470)
-		;MouseClick("primary",955,470,5,20)
-		Sleep(1000)
+	;	Mouse_MPush(955,470)
+	;Sloth Form 515 seconds, cooldown 285s
+	Mouse_MPush(45,190,3)
+
+	Sleep(1000)
 Next
 
-;Buy Carl + Tomb
-
-
-for $i = 7 To 1 Step -1
+for $i = 2 To 1 Step -1
 	$TIMER = TimerInit()
 	$TIMEREND = 62000
 	Mouse_MPush(750,655,3)
@@ -108,14 +187,10 @@ for $i = 7 To 1 Step -1
 	WEnd
 Next
 
-;Activate All Skills
-	MouseClick("primary",955,470,5,20)
-
-
-
-Right_Panel_Minus_Close()
+Sleep(310000)
 
 ;Perk
+	Right_Panel_Minus_Close()
 	Mouse_MPush(115,120)
 	  Sleep(2000);
 	  ;choose yes
@@ -129,42 +204,10 @@ Right_Panel_Minus_Close()
 	  Sleep(17000)
 	  Mouse_MPush(220,560,5)
 
-
-
-;~ Right_Panel_Pluse_Open()
-;~ 	;Chose Map
-;~ 	MouseMove(678,523)
-;~ 	MouseWheel($MOUSE_WHEEL_DOWN, 50)
-;~ 	Mouse_MPush(835,530)
-;~ 	Sleep(3000)
-;~ 	;Kingdom
-;~ 	Mouse_MPush(710,550)
-;~ 	Mouse_MPush(580,510)
-
-;~ 	;SlothForm
-;~ 	Sleep(3000)
-;~ 	Mouse_MPush(45,190,3)
-;~ 	Sleep(540000)
-;~ 	Mouse_MPush(45,190,3)
-;~ 	Sleep(300000)
-
-	if $counter = 1 Then
-		$counter=0
-		;Window Choose and reset
-		Mouse_MPush(115,55)
-		Sleep(25000)
-		;ClaimSkulls
-		Mouse_MPush(115,125)
-		Mouse_MPush(250,485)
-	EndIf
-
-	;SlothForm
-	Sleep(2000)
-	Mouse_MPush(45,190,3)
-
-Right_Panel_Pluse_Open()
+;Go_further_in_map_and_col_items()
 
 ;Chose Sword!
+Right_Panel_Pluse_Open()
 Mouse_MPush(550,225,2)
 
 ;Enter Arcane
@@ -172,6 +215,13 @@ Mouse_MPush(550,225,2)
 	MouseWheel($MOUSE_WHEEL_DOWN, 50)
 	Mouse_MPush(750,530,2)
 	Sleep(2000);
+
+;Boost
+	Mouse_MPush(115,210,2)
+	Mouse_MPush(660,540,2)
+	Sleep ( 17000 )
+	Mouse_MPush(675,230,2)
+
 ;Collect All
 	Mouse_MPush(310,220,2)
 	Sleep(2000);
@@ -188,37 +238,25 @@ Mouse_MPush(550,225,2)
 	Sleep(2000)
 
 ;Fast Ghost Craft
-	MouseClick("primary",530,215,1,20)
-	  Sleep(300)
-	  MouseDown("primary")
-	  Sleep(300)
-	  MouseUp("primary")
-	  Sleep( 200)
-	  MouseDown("primary")
-	  Sleep(300)
-	  MouseUp("primary")
-	  Sleep(2000);
+	for $i=0 To 3 Step 1
+		Mouse_MPush(530,215,2)
+		Mouse_MPush(310,220,2)
+	Next
+	Sleep(1000)
+
 ;~ ;Exit Arcane
 	Mouse_MPush(950,100,10)
 	Sleep(2000);
 	Mouse_MPush(950,100,10)
 	Sleep(2000)
-;~ 	;Perk
-;~ 		Mouse_MPush(115,120)
-;~ 		Sleep(2000);
-;~ 	;choose yes
-;~ 	  Mouse_MPush(660,540,2)
-;~ 	;CloseAd
-;~ 	  Sleep ( 17000 )
-;~ 	  Mouse_MPush(675,230,2)
 
-;~ 	;Items
-;~ 		for $i=1 To 20 Step 1
-;~ 			Mouse_MPush(115,120)
-;~ 			Sleep(1000)
-;~ 			Mouse_MPush(220,560,2)
-;~ 			Sleep(1000)
-;~ 		Next
+;Items
+	for $i=1 To 14 Step 1
+		Mouse_MPush(115,120)
+		Sleep(1000)
+		Mouse_MPush(220,560,2)
+		Sleep(1000)
+	Next
 
 ;Quick Portal
 	MouseMove(678,523)
