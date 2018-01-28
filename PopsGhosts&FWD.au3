@@ -163,23 +163,26 @@ for $i=3 To 1 Step -1
 	Sleep(1000)
 Next
 
+;buy Carl an Tomb
+	Mouse_MPush(750,655,3)
+	Sleep(2000)
+	Mouse_MPush(520,655,3)
+
+Right_Panel_Minus_Close()
+
 for $i = 2 To 1 Step -1
 	$TIMER = TimerInit()
 	$TIMEREND = 62000
-	Mouse_MPush(750,655,3)
-	;MouseClick("primary",750,655,5,20)
-	Sleep(2000)
-	Mouse_MPush(520,655,3)
-	;MouseClick("primary",520,655,5,20)
 	While 1
 		$dif = TimerDiff ($TIMER)
 		if $dif > $TIMEREND Then ExitLoop
-		MouseClick("primary",350,440,1,1)
-		Sleep(400)
+		Mouse_MPush(670,475,25)
+		Mouse_MPush(660,540)
+		Mouse_MPush(675,230)
 	WEnd
 Next
 
-Sleep(310000)
+Sleep(250000)
 	;Sloth Form 515 seconds, cooldown 285s
 	Mouse_MPush(45,190,3)
 
@@ -195,21 +198,10 @@ Sleep(310000)
 	  Sleep ( 17000 )
 	  Mouse_MPush(675,230,2)
 	  ;?check for item?
-	  Sleep(17000)
+	  Sleep(19000)
 	  Mouse_MPush(220,560,5)
 
 ;Go_further_in_map_and_col_items()
-
-if $counter = 1 Then
-	$counter=0
-	;Window Choose and reset
-	Mouse_MPush(115,55)
-	Sleep(25000)
-	;ClaimSkulls
-	Mouse_MPush(115,125)
-	Sleep(1000)
-	Mouse_MPush(250,485,2)
-EndIf
 
 ;Chose Sword!
 Right_Panel_Pluse_Open()
@@ -247,6 +239,7 @@ Mouse_MPush(550,225,2)
 		Mouse_MPush(530,215,2)
 		Mouse_MPush(310,220,2)
 	Next
+	Mouse_MPush(530,215,2)
 	Sleep(1000)
 
 ;~ ;Exit Arcane
@@ -255,8 +248,19 @@ Mouse_MPush(550,225,2)
 	Mouse_MPush(950,100,10)
 	Sleep(2000)
 
+if $counter = 4 Then
+	$counter=0
+	;Window Choose and reset
+	Mouse_MPush(115,55)
+	Sleep(40000)
+	;ClaimSkulls
+	Mouse_MPush(115,125)
+	Sleep(2000)
+	Mouse_MPush(250,485,2)
+EndIf
+
 ;Items
-	for $i=1 To 3 Step 1
+	for $i=1 To 5 Step 1
 		Mouse_MPush(115,120)
 		Sleep(1000)
 		Mouse_MPush(220,560,2)
